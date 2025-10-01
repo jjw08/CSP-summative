@@ -2,7 +2,7 @@ import turtle as trtl
 painter = trtl.Turtle()
 
 #Add custom plane turtle
-trtl.addshape("plane", ((-64,-8),(-40,8),(32,8),(48,32),(48,8),(40,-8)))
+trtl.addshape("plane", ((-64,-8),(-40,8),(32,8),(48,24),(48,8),(40,-8)))
 
 #Draw runway, add backround
 trtl.bgcolor("CadetBlue1")
@@ -50,7 +50,6 @@ while loopy == 'y':
     starty = 8
     
     for t in plane_full:
-        
         t.goto(startx,starty)
         t.setheading(90)
         

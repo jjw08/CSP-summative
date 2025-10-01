@@ -39,7 +39,7 @@ while loopy == 'y':
         t = trtl.Turtle(shape=s, visible= False)
     
         c = plane_color.pop()
-        t.color(c)
+        t.fillcolor(c)
         t.penup()
         
     

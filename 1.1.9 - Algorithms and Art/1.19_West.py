@@ -29,7 +29,14 @@ while loopy == 'y':
     
 
 #Create lists
-    plane_color = [trtl.textinput("Plane color", 'What color do you want the plane to be?')]
+    is_error = False
+    while not is_error:
+        plane_color = [trtl.textinput("Plane color", 'What color do you want the plane to be?')]
+        try:
+            painter.color(plane_color, plane_color)
+            is_error = True
+        except trtl.TurtleGraphicsError:
+            is_error = False
     plane_shape = ["plane"]
     plane_full = []
     plane_speed = int((trtl.textinput("Plane Speed", 'How fast should the plane be? (1-10)')))

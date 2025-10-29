@@ -9,6 +9,7 @@ goaler = "goalie.gif"
 wn = trtl.Screen()
 wn.setup(width=1.0, height=1.0)
 wn.addshape(soccer_ball)
+wn.addshape(goaler)
 wn.bgpic(goal)
 trtl.Screen().bgcolor("#00bfff")
 
@@ -18,15 +19,16 @@ ball = trtl.Turtle()
 ball.shape(soccer_ball)
 ball.penup()
 ball.goto(0,-120)
-wn.tracer(False)
+#wn.tracer(False)
 
 #Add goalie
 
 goalie = trtl.Turtle()
 goalie.shape(goaler)
 goalie.penup()
-goalie.goto(0,0)
-wn.tracer(False)
+goalie.goto(0,-40)
+
+#wn.tracer(False)
 
 
 #----functions
@@ -43,5 +45,5 @@ wn.tracer(False)
 
 
 
-wn = trtl.Screen()
+
 wn.mainloop()

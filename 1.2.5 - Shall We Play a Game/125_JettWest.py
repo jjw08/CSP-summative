@@ -8,6 +8,7 @@ goaler = "goalie.gif"
 game = False
 win = False
 lose = False
+score = 0
 
 wn = trtl.Screen()
 wn.setup(width=1.0, height=1.0)
@@ -72,6 +73,7 @@ def endgame():
 #Create onpress functions for a, s, d, move ball to specific positions, move goalie to random positions
 def shoot_left():
     global game
+    global score
     if game:
         goalie.goto(rand.choice(goalie_postions))
         ball.goto(-80,-40)
@@ -83,6 +85,8 @@ def shoot_left():
             print("you lose!")
             word.clear()
             word.write("BLOCKED BY JAMES! Click the ball to shoot again!", align='center',  font=("Arial", 20, "normal"))
+            score = 0
+            print(score)
 
         elif goalie.xcor() != ball.xcor(): 
             global win
@@ -90,12 +94,15 @@ def shoot_left():
             print("you win!")
             word.clear()
             word.write("Gooooaaaal! Click the ball to shoot again!", align='center',  font=("Arial", 20, "normal"))
+            score = score + 1
+            print(score)
 
 
       
 
 def shoot_center():
     global game
+    global score
     if game:
         goalie.goto(rand.choice(goalie_postions))
         ball.goto(0, -40)
@@ -107,17 +114,21 @@ def shoot_center():
             print("you lose!")
             word.clear()
             word.write("BLOCKED BY JAMES! Click the ball to shoot again!", align='center',  font=("Arial", 20, "normal"))
-
+            score = 0
+            print(score)
         elif goalie.xcor() != ball.xcor(): 
             global win
             win = True
             print("you win!")
             word.clear()
             word.write("Gooooaaaal! Click the ball to shoot again!", align='center',  font=("Arial", 20, "normal"))
+            score = score + 1
+            print(score)
         
 
 def shoot_right():
     global game
+    global score
     if game:
         goalie.goto(rand.choice(goalie_postions))
         ball.goto(80, -40)
@@ -129,14 +140,16 @@ def shoot_right():
             print("you lose!")
             word.clear()
             word.write("BLOCKED BY JAMES! Click the ball to shoot again!", align='center',  font=("Arial", 20, "normal"))
-
+            score = 0
+            print(score)
         elif goalie.xcor() != ball.xcor(): 
             global win
             win = True
             print("you win!")
             word.clear()
             word.write("Gooooaaaal! Click the ball to shoot again!", align='center',  font=("Arial", 20, "normal"))
-
+            score = score + 1 
+            print(score)
 
 
 

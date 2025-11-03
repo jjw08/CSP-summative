@@ -6,6 +6,8 @@ soccer_ball = "soccerball.gif"
 goal = "goal.gif"
 goaler = "goalie.gif"
 game = False
+win = False
+lose = False
 
 wn = trtl.Screen()
 wn.setup(width=1.0, height=1.0)
@@ -41,7 +43,12 @@ word.write("Click the ball to start!", align='center',  font=("Arial", 20, "norm
 #create a start game function
 def startgame(x,y):
     global game
+    global win
+    global lose
     game = True
+    win = False
+    lose = False
+
     #print("game is true")
     ball.goto(0,-120)
     wn.onkeypress(shoot_left, "a")
@@ -69,21 +76,66 @@ def shoot_left():
         goalie.goto(rand.choice(goalie_postions))
         ball.goto(-80,-40)
         endgame()
-        #print("game is now false")
+        
+        if goalie.xcor() == ball.xcor():
+            global lose 
+            lose = True
+            print("you lose!")
+            word.clear()
+            word.write("BLOCKED BY JAMES! Click the ball to shoot again!", align='center',  font=("Arial", 20, "normal"))
+
+        elif goalie.xcor() != ball.xcor(): 
+            global win
+            win = True
+            print("you win!")
+            word.clear()
+            word.write("Gooooaaaal! Click the ball to shoot again!", align='center',  font=("Arial", 20, "normal"))
+
+
+      
+
 def shoot_center():
     global game
     if game:
         goalie.goto(rand.choice(goalie_postions))
         ball.goto(0, -40)
         endgame()
-        #print("game is now false")
+        
+        if goalie.xcor() == ball.xcor():
+            global lose 
+            lose = True
+            print("you lose!")
+            word.clear()
+            word.write("BLOCKED BY JAMES! Click the ball to shoot again!", align='center',  font=("Arial", 20, "normal"))
+
+        elif goalie.xcor() != ball.xcor(): 
+            global win
+            win = True
+            print("you win!")
+            word.clear()
+            word.write("Gooooaaaal! Click the ball to shoot again!", align='center',  font=("Arial", 20, "normal"))
+        
+
 def shoot_right():
     global game
     if game:
         goalie.goto(rand.choice(goalie_postions))
         ball.goto(80, -40)
         endgame()
-        #print("game is now false")
+        
+        if goalie.xcor() == ball.xcor():
+            global lose 
+            lose = True
+            print("you lose!")
+            word.clear()
+            word.write("BLOCKED BY JAMES! Click the ball to shoot again!", align='center',  font=("Arial", 20, "normal"))
+
+        elif goalie.xcor() != ball.xcor(): 
+            global win
+            win = True
+            print("you win!")
+            word.clear()
+            word.write("Gooooaaaal! Click the ball to shoot again!", align='center',  font=("Arial", 20, "normal"))
 
 
 
@@ -100,11 +152,6 @@ def shoot_right():
 
 ball.onclick(startgame) #start game
 
-if goalie.xcor() == ball.xcor():
-    #Call up leaderboard
-    print("you lose!")
-elif goalie.xcor() != ball.xcor(): 
-    #reset game
-    print("you win!")
+
 
 wn.mainloop()

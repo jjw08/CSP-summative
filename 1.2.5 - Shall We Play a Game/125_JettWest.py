@@ -79,7 +79,7 @@ def shoot_left():
         ball.goto(-80,-40)
         endgame()
         
-        if goalie.xcor() == ball.xcor():
+        if goalie.xcor() == ball.xcor(): #lose condition
             global lose 
             lose = True
             print("you lose!")
@@ -88,7 +88,7 @@ def shoot_left():
             score = 0
             print(score)
 
-        elif goalie.xcor() != ball.xcor(): 
+        elif goalie.xcor() != ball.xcor(): #win condition
             global win
             win = True
             print("you win!")
@@ -142,7 +142,8 @@ def shoot_right():
             word.write("BLOCKED BY JAMES! Click the ball to shoot again!", align='center',  font=("Arial", 20, "normal"))
             score = 0
             print(score)
-        elif goalie.xcor() != ball.xcor(): 
+
+        elif goalie.xcor() != ball.xcor():  
             global win
             win = True
             print("you win!")
@@ -153,11 +154,7 @@ def shoot_right():
 
 
 
-#if ball and goalie = same x.cor then print you lose, end game
 
-
-
-#if ball and goalie = diff x.cor then add 1 score, reloop the game.
 
 
 #---events

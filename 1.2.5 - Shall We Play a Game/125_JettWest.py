@@ -10,6 +10,10 @@ win = False
 lose = False
 score = 0
 
+
+
+
+
 wn = trtl.Screen()
 wn.setup(width=1.0, height=1.0)
 wn.addshape(soccer_ball)
@@ -87,7 +91,7 @@ def shoot_left():
             word.write("BLOCKED BY JAMES! Click the ball to shoot again!", align='center',  font=("Arial", 20, "normal"))
             score = 0
             print(score)
-
+          
         elif goalie.xcor() != ball.xcor(): #win condition
             global win
             win = True
@@ -142,6 +146,7 @@ def shoot_right():
             word.write("BLOCKED BY JAMES! Click the ball to shoot again!", align='center',  font=("Arial", 20, "normal"))
             score = 0
             print(score)
+            
 
         elif goalie.xcor() != ball.xcor():  
             global win
@@ -151,9 +156,6 @@ def shoot_right():
             word.write("Gooooaaaal! Click the ball to shoot again!", align='center',  font=("Arial", 20, "normal"))
             score = score + 1 
             print(score)
-
-
-
 
 
 

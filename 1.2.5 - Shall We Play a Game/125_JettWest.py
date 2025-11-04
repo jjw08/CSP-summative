@@ -22,6 +22,16 @@ leaderboard_file_name = "a125_leaderboard.txt"
 score_writer = trtl.Turtle()
 score_writer.hideturtle()
 
+#score turtle
+score_turt = trtl.Turtle()
+score_turt.hideturtle()
+score_turt.penup()
+score_turt.pensize(2)
+score_turt.speed(10)
+score_turt.color("white")
+score_turt.goto(0,200)
+
+
 wn = trtl.Screen()
 wn.setup(width=1.0, height=1.0)
 wn.addshape(soccer_ball)
@@ -99,6 +109,7 @@ def shoot_left():
         endgame()
         
         if goalie.xcor() == ball.xcor(): #lose condition
+
             global lose 
             lose = True
             print("you lose!")
@@ -106,17 +117,20 @@ def shoot_left():
             word.write("BLOCKED BY JAMES! Click the ball to shoot again!", align='center',  font=("Arial", 20, "normal"))
            
             updateleaderboard()
+           
             score = 0
-          
+            
+
         elif goalie.xcor() != ball.xcor(): #win condition
             global win
             win = True
+            score_turt.clear()
             print("you win!")
             word.clear()
             word.write("Gooooaaaal! Click the ball to shoot again!", align='center',  font=("Arial", 20, "normal"))
             score = score + 1
             print(score)
-
+            score_turt.write(score, align='center',  font=("Arial", 20, "normal"))
 
       
 
@@ -141,11 +155,13 @@ def shoot_center():
         elif goalie.xcor() != ball.xcor(): 
             global win
             win = True
+            score_turt.clear()
             print("you win!")
             word.clear()
             word.write("Gooooaaaal! Click the ball to shoot again!", align='center',  font=("Arial", 20, "normal"))
             score = score + 1
             print(score)
+            score_turt.write(score, align='center',  font=("Arial", 20, "normal"))
         
 
 def shoot_right():
@@ -171,11 +187,13 @@ def shoot_right():
         elif goalie.xcor() != ball.xcor():  
             global win
             win = True
+            score_turt.clear()
             print("you win!")
             word.clear()
             word.write("Gooooaaaal! Click the ball to shoot again!", align='center',  font=("Arial", 20, "normal"))
-            score = score + 1 
+            score = score + 1
             print(score)
+            score_turt.write(score, align='center',  font=("Arial", 20, "normal"))
 
 
 def updateleaderboard():

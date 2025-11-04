@@ -79,7 +79,8 @@ def startgame(x,y):
     lose = False
     
     #print("game is true")
-    
+    score_turt.clear()
+    score_turt.write(score, align='center',  font=("Arial", 20, "normal"))
     ball.goto(0,-120)
     wn.onkeypress(shoot_left, "a")
     wn.onkeypress(shoot_center, "s")

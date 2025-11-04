@@ -1,6 +1,6 @@
 import turtle as trtl
 import random as rand
-
+import leaderboard as lb
 #----- Variables and screen setup
 soccer_ball = "soccerball.gif"
 goal = "goal.gif"
@@ -10,8 +10,9 @@ win = False
 lose = False
 score = 0
 
-
-
+leadernames = []
+leaderscores = []
+leaderboard_file_name = "a125_leaderboard.txt"
 
 
 wn = trtl.Screen()
@@ -44,6 +45,8 @@ word.color("white")
 word.goto(0,100)
 word.write("Click the ball to start!", align='center',  font=("Arial", 20, "normal"))
 
+
+player_name = trtl.textinput("enter your intials", "Please enter your initials")
 #----functions
 #create a start game function
 def startgame(x,y):
@@ -55,6 +58,7 @@ def startgame(x,y):
     lose = False
 
     #print("game is true")
+    
     ball.goto(0,-120)
     wn.onkeypress(shoot_left, "a")
     wn.onkeypress(shoot_center, "s")
@@ -120,6 +124,7 @@ def shoot_center():
             word.write("BLOCKED BY JAMES! Click the ball to shoot again!", align='center',  font=("Arial", 20, "normal"))
             score = 0
             print(score)
+            
         elif goalie.xcor() != ball.xcor(): 
             global win
             win = True
@@ -146,6 +151,7 @@ def shoot_right():
             word.write("BLOCKED BY JAMES! Click the ball to shoot again!", align='center',  font=("Arial", 20, "normal"))
             score = 0
             print(score)
+            updateleaderboard()
             
 
         elif goalie.xcor() != ball.xcor():  
@@ -158,7 +164,23 @@ def shoot_right():
             print(score)
 
 
+def updateleaderboard():
+    
 
+  global score
+  
+
+  # get the names and scores from the leaderboard file
+  leadernames = lb.get_names(leaderboard_file_name)
+  leaderscores = lb.get_scores(leaderboard_file_name)
+
+ #check to see if score is higher than leaderboard scores
+  if (len(leaderscores) < 5 or score >= leaderscores[4]):
+    lb.update_leaderboard(leaderboard_file_name, leadernames, leaderscores, player_name, score)
+    lb.draw_leaderboard(True, leadernames, leaderscores, score)
+
+  else:
+    lb.draw_leaderboard(False, leadernames, leaderscores, score)
 #---events
 
 

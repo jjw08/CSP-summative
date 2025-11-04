@@ -10,10 +10,17 @@ win = False
 lose = False
 score = 0
 
+leader_turtle = trtl.Turtle()
+leader_turtle.hideturtle()
+leader_turtle.penup()
 leadernames = []
 leaderscores = []
 leaderboard_file_name = "a125_leaderboard.txt"
 
+
+# Score Writer
+score_writer = trtl.Turtle()
+score_writer.hideturtle()
 
 wn = trtl.Screen()
 wn.setup(width=1.0, height=1.0)
@@ -47,16 +54,20 @@ word.write("Click the ball to start!", align='center',  font=("Arial", 20, "norm
 
 
 player_name = trtl.textinput("enter your intials", "Please enter your initials")
+player_name = player_name.upper()
+player_name = player_name[:3]
 #----functions
 #create a start game function
 def startgame(x,y):
+    score_writer.clear()
     global game
     global win
     global lose
+    global score
     game = True
     win = False
     lose = False
-
+    
     #print("game is true")
     
     ball.goto(0,-120)
@@ -93,8 +104,9 @@ def shoot_left():
             print("you lose!")
             word.clear()
             word.write("BLOCKED BY JAMES! Click the ball to shoot again!", align='center',  font=("Arial", 20, "normal"))
+           
+            updateleaderboard()
             score = 0
-            print(score)
           
         elif goalie.xcor() != ball.xcor(): #win condition
             global win
@@ -122,8 +134,9 @@ def shoot_center():
             print("you lose!")
             word.clear()
             word.write("BLOCKED BY JAMES! Click the ball to shoot again!", align='center',  font=("Arial", 20, "normal"))
+            
+            updateleaderboard()
             score = 0
-            print(score)
             
         elif goalie.xcor() != ball.xcor(): 
             global win
@@ -149,9 +162,10 @@ def shoot_right():
             print("you lose!")
             word.clear()
             word.write("BLOCKED BY JAMES! Click the ball to shoot again!", align='center',  font=("Arial", 20, "normal"))
-            score = 0
+            
             print(score)
             updateleaderboard()
+            score = 0
             
 
         elif goalie.xcor() != ball.xcor():  
@@ -177,10 +191,16 @@ def updateleaderboard():
  #check to see if score is higher than leaderboard scores
   if (len(leaderscores) < 5 or score >= leaderscores[4]):
     lb.update_leaderboard(leaderboard_file_name, leadernames, leaderscores, player_name, score)
-    lb.draw_leaderboard(True, leadernames, leaderscores, score)
+
+    leadernames = lb.get_names(leaderboard_file_name)
+    leaderscores = lb.get_scores(leaderboard_file_name)
+
+
+    lb.draw_leaderboard(True, leadernames, leaderscores, score_writer)
 
   else:
-    lb.draw_leaderboard(False, leadernames, leaderscores, score)
+    lb.draw_leaderboard(False, leadernames, leaderscores, score_writer)
+
 #---events
 
 

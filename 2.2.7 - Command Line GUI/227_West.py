@@ -1,5 +1,3 @@
-# p227_starter_one_button_shell.py
-# Note this will not run in the code editor and must be downloaded
 
 import subprocess
 import tkinter as tk
@@ -60,6 +58,13 @@ frame.pack()
 ping_btn = tk.Button(frame, text="Ping URL",
   image=robin, command=lambda:do_command("ping -c 10"))
 ping_btn.pack(side=tk.LEFT)
+
+Label_label = tk.Label(root, text="       Ping                 Nslookup                      Dig                Save File", 
+     font=("Helvetica", 20),
+     bg="white", fg= "green")
+Label_label.pack() 
+
+
 
 NS_btn = tk.Button(frame, text="NSlookup",
    command=lambda:do_command("nslookup"),
